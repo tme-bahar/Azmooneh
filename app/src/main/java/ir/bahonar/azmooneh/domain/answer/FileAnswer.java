@@ -12,8 +12,8 @@ public class FileAnswer extends Answer{
     private final File answer;
 
     //constructor
-    public FileAnswer(String id, Question question, User student, File answer) {
-        super(id, question, student);
+    public FileAnswer(String id, Question question, User student, File answer,AnswerExam answerExam) {
+        super(id, question, student,answerExam);
         this.answer = answer;
     }
 

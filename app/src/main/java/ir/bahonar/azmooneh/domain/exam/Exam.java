@@ -35,7 +35,18 @@ public class Exam {
         questions = new ArrayList<>();
         studentAnswers = new Answers(this);
     }
-
+    public Exam(String id,Exam exam){
+        this.id = id;
+        this.teacher = exam.teacher;
+        this.name = exam.name;
+        this.students = exam.students;
+        this.questions = exam.questions;
+        this.isMultiQuestion = exam.isMultiQuestion;
+        this.startingTime = exam.startingTime;
+        this.finishingTime = exam.finishingTime;
+        this.maxGrade = exam.maxGrade;
+        this.studentAnswers = exam.studentAnswers;
+    }
     //getters
 
     public String getId() {
@@ -131,6 +142,7 @@ public class Exam {
         return result;
     }
 
+    public boolean addQuestions(List<Question> questions){return addQuestion((Question[]) questions.toArray());}
     public boolean isFull() {
         int sum = 0;
         for (Question q : questions)

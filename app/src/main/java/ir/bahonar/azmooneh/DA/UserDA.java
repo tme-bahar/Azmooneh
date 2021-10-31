@@ -42,6 +42,28 @@ public class UserDA {
         profile = cursor.getString(cursor.getColumnIndexOrThrow("profile"));
         return new User(id,number,firstName,lastName,username,password,type,profile);
     }
+    public User get(String id){
+        Field filter = new Field("id",id);
+        String number ;
+        String firstName ;
+        String lastName ;
+        String username ;
+        String password ;
+        User.userType type ;
+        String profile ;
+        Cursor cursor = db.select("users",null,filter,null);
+        if(cursor == null)
+            return null;
+        cursor.moveToNext();
+        number = cursor.getString(cursor.getColumnIndexOrThrow("number"));
+        username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+        password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+        firstName = cursor.getString(cursor.getColumnIndexOrThrow("firstName"));
+        lastName = cursor.getString(cursor.getColumnIndexOrThrow("lastName"));
+        type = cursor.getString(cursor.getColumnIndexOrThrow("type")).equals("student")? User.userType.STUDENT: User.userType.TEACHER;
+        profile = cursor.getString(cursor.getColumnIndexOrThrow("profile"));
+        return new User(id,number,firstName,lastName,username,password,type,profile);
+    }
 
     public boolean isValidUser(String username){
         Field filter = new Field("username",username);

@@ -11,12 +11,14 @@ public abstract class Answer {
     private final Question question;
     private final Exam exam;
     private final User student;
+    private final AnswerExam answerExam;
     private float grade;
     public enum AnswerType{file,text,multiChoice}
     //constructor
-    public Answer(String id, Question question, User student) {
+    public Answer(String id, Question question, User student,AnswerExam answerExam) {
         this.id = id;
         this.question = question;
+        this.answerExam = answerExam;
         this.exam = question.getExam();
         this.student = student;
         this.grade = -1;
@@ -42,6 +44,10 @@ public abstract class Answer {
 
     public float getGrade() {
         return grade;
+    }
+
+    public AnswerExam getAnswerExam() {
+        return answerExam;
     }
 
     public boolean setGrade(float grade) {

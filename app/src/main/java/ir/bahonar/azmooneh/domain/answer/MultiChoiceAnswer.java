@@ -10,8 +10,8 @@ public class MultiChoiceAnswer extends Answer{
     private final int answer;
 
     //constructor
-    public MultiChoiceAnswer(String id, Question question, User student,int answer) {
-        super(id, question, student);
+    public MultiChoiceAnswer(String id, Question question, User student,int answer,AnswerExam answerExam) {
+        super(id, question, student,answerExam);
         if(answer >1)
             this.answer = answer;
         else

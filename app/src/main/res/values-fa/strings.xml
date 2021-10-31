@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">آزمونه</string>
+    <string name="password_field">رمز عبور</string>
+    <string name="remembering">مرا به خاطر بسپار</string>
+    <string name="sign_up">ثبت نام</string>
+    <string name="log_in">ورود</string>
+    <string name="sign_in">ورود</string>
+    <string name="getting_username">نام کاربری</string>
+    <string name="getting_password">رمز عبور</string>
+    <string name="username">نام کاربری</string>
+    <string name="password">رمز عبور</string>
+    <string name="first_name">نام</string>
+    <string name="last_name">نام خانوادگی</string>
+    <string name="student">دانشجو</string>
+    <string name="teacher">استاد</string>
+    <string name="valid_acount">حساب کاربری دارید ؟</string>
+</resources>

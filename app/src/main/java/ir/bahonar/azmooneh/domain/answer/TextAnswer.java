@@ -9,8 +9,8 @@ public class TextAnswer extends Answer{
     //field
     private String answer;
 
-    public TextAnswer(String id, Question question, User student, String answer) {
-        super(id, question, student);
+    public TextAnswer(String id, Question question, User student, String answer,AnswerExam answerExam) {
+        super(id, question, student,answerExam);
         this.answer = answer;
     }
 

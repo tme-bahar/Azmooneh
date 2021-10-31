@@ -72,6 +72,15 @@ public class DataBase {
                 " WHERE " + filter.getKey() + " = '" + filter.getValue() + "'";
         myDataBase.execSQL(sb);
     }
+    public void update(String tableName, Field filter, FieldMap data){
+        if (data.isEmpty())
+            return;
+        StringBuilder sb = new StringBuilder("UPDATE " + tableName + " SET ");
+        for (Field f:data.getAll())
+            sb.append(f.getKey()).append(" = '").append(f.getValue()).append("'");
+        sb.append(" WHERE ").append(filter.getKey()).append(" = '").append(filter.getValue()).append("'");
+        myDataBase.execSQL(sb.toString());
+    }
 
     //select
     public Cursor select(String tableName, List<String> projection, Field filter, String order, String limit){

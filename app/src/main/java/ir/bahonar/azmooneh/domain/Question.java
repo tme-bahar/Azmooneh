@@ -30,6 +30,16 @@ public class Question {
         this.choices = choices;
         this.choiceText = new String[choices];
     }
+    public Question(String id,Question question){
+        this.id = id;
+        this.number = question.number;
+        this.text = question.text;
+        this.picture = question.picture;
+        this.exam = question.exam;
+        this.maxGrade = question.maxGrade;
+        this.choices = question.choices;
+        this.choiceText = question.choiceText;
+    }
 
     //getters
 
