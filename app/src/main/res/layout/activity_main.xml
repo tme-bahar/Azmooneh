@@ -55,7 +55,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_person_outline_24" />
+                app:srcCompat="@drawable/ic_baseline_person_outline_24"
+                app:tint="#BFBFBF" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
@@ -109,7 +110,7 @@
                 app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/radioButton"
             android:layout_width="185dp"
             android:layout_height="48dp"

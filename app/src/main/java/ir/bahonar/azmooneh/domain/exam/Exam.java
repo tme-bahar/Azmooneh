@@ -3,6 +3,8 @@ package ir.bahonar.azmooneh.domain.exam;
 import java.util.ArrayList;
 import java.util.List;
 
+import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
+import ir.bahonar.azmooneh.R;
 import ir.bahonar.azmooneh.domain.Question;
 import ir.bahonar.azmooneh.domain.User;
 import ir.bahonar.azmooneh.domain.answer.Answers;
@@ -20,7 +22,7 @@ public class Exam {
     private final String finishingTime;
     private final float maxGrade;
     private final Answers studentAnswers;
-
+    public enum Status {notStarted, running , finished}
 
     //constructor
     public Exam(String id,User teacher,boolean isMultiQuestion,String startingTime,String finishingTime,float maxGrade,String name){
@@ -154,5 +156,11 @@ public class Exam {
     }
     public boolean equals(Exam exam){
         return exam.getId().equals(id);
+    }
+
+    //get status
+    public Status getStatus(){
+        //TODO : Code HERE
+        return Status.running;
     }
 }

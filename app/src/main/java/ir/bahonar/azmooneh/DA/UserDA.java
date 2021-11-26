@@ -3,10 +3,14 @@ package ir.bahonar.azmooneh.DA;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
 import ir.bahonar.azmooneh.DA.relatedObjects.Field;
 import ir.bahonar.azmooneh.DA.relatedObjects.FieldMap;
 import ir.bahonar.azmooneh.domain.User;
+import ir.bahonar.azmooneh.domain.exam.Exam;
 
 public class UserDA {
 
@@ -29,7 +33,9 @@ public class UserDA {
         User.userType type ;
         String profile ;
         Cursor cursor = db.select("users",null,filter,null);
-        if(cursor == null)
+        if(cursor == null )
+            return null;
+        if(cursor.getCount() < 1)
             return null;
         cursor.moveToNext();
         if(!cursor.getString(cursor.getColumnIndexOrThrow("password")).equals(password))
@@ -38,7 +44,7 @@ public class UserDA {
         number = cursor.getString(cursor.getColumnIndexOrThrow("number"));
         firstName = cursor.getString(cursor.getColumnIndexOrThrow("firstName"));
         lastName = cursor.getString(cursor.getColumnIndexOrThrow("lastName"));
-        type = cursor.getString(cursor.getColumnIndexOrThrow("type")).equals("student")? User.userType.STUDENT: User.userType.TEACHER;
+        type = cursor.getString(cursor.getColumnIndexOrThrow("type")).equals(User.userType.STUDENT.toString())? User.userType.STUDENT: User.userType.TEACHER;
         profile = cursor.getString(cursor.getColumnIndexOrThrow("profile"));
         return new User(id,number,firstName,lastName,username,password,type,profile);
     }
@@ -68,15 +74,30 @@ public class UserDA {
     public boolean isValidUser(String username){
         Field filter = new Field("username",username);
         Cursor cursor = db.select("users",null,filter,null);
-        return cursor != null;
+        if(cursor == null)
+            return false;
+        return cursor.getCount() >= 1;
     }
 
+    //is signed in
     public boolean isSignedIn(){
         return sharedPref.getBoolean("isSignedIn",false);
     }
 
-    public User signIn(){
-        return isValidUser(sharedPref.getString("username",""),sharedPref.getString("password",""));
+    //is first in
+    public boolean isFirstIn(){
+        final boolean result = sharedPref.getBoolean("isFirstIn",true);
+        if (result)
+        {
+            new DataBase().createTables();
+            editor.putBoolean("isFirstIn",false);
+            editor.apply();
+        }
+        return result;
+    }
+
+    public User signIn(String username,String password){
+        return isValidUser(username,password);
     }
 
     public void keepSignedIn(String username,String password){
@@ -85,11 +106,17 @@ public class UserDA {
         editor.putBoolean("isSignedIn",true);
         editor.apply();
     }
+    public String getUserName(){
+        return sharedPref.getString("username","");
+    }
+    public String getPassword(){
+        return sharedPref.getString("password","");
+    }
 
     public void singUp(User user){
         Field number = new Field("number",user.getNumber());
-        Field firstName = new Field("first_name",user.getFirstName());
-        Field lastName = new Field("last_name",user.getLastName());
+        Field firstName = new Field("firstName",user.getFirstName());
+        Field lastName = new Field("lastName",user.getLastName());
         Field username = new Field("username",user.getUsername());
         Field password = new Field("password",user.getPassword());
         Field type = new Field("type",user.getType().toString());
@@ -104,5 +131,27 @@ public class UserDA {
         editor.putString("password","");
         editor.putBoolean("isSignedIn",false);
         editor.apply();
+    }
+
+    //get exams
+    public List<Exam> getExam(String id){
+        Field filter = new Field("user_id",id);
+        List<Exam> result = new ArrayList<>();
+        List<String> projection = new ArrayList<>();
+        projection.add("exam_id");
+        Cursor cursor =db.select("exam_to_user",projection,filter,null);
+        if(cursor == null)
+            return result;
+        if(cursor.getCount() < 1)
+            return result;
+        List<String> ids = new ArrayList<>();
+        while (cursor.moveToNext()){
+            String newId = cursor.getString(cursor.getColumnIndexOrThrow("exam_id"));
+            ids.add(newId);
+        }
+        ExamDA eda = new ExamDA();
+        for (String i:ids)
+            result.add(eda.get(i));
+        return result;
     }
 }

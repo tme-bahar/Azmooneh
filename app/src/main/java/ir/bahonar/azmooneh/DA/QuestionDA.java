@@ -73,9 +73,10 @@ public class QuestionDA {
         Field number = new Field("number",String.valueOf(question.getNumber()));
         Field text = new Field("text",String.valueOf(question.getText()));
         Field picture = new Field("picture",String.valueOf(question.getPicture()));
+        Field examId = new Field("exam_id",String.valueOf(question.getExam().getId()));
         Field max_grade = new Field("max_grade",String.valueOf(question.getMaxGrade()));
         Field choices = new Field("choices",String.valueOf(question.getChoices()));
-        FieldMap fm = new FieldMap(number,text,picture,max_grade,choices);
+        FieldMap fm = new FieldMap(number,text,picture,max_grade,choices,examId);
         Field filter = new Field("id",question.getId());
         db.update("questions",filter,fm);
     }

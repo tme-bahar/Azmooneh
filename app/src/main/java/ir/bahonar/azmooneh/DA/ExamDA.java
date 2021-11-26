@@ -3,6 +3,8 @@ package ir.bahonar.azmooneh.DA;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 
+import java.util.List;
+
 import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
 import ir.bahonar.azmooneh.DA.relatedObjects.Field;
 import ir.bahonar.azmooneh.DA.relatedObjects.FieldMap;
@@ -55,4 +57,17 @@ public class ExamDA {
         String max_grade = cursor.getString(cursor.getColumnIndexOrThrow("max_grade"));
         return new Exam(id,(new UserDA()).get(teacher_id),is_multi_question.equals("1"),starting_time,finishing_time,Float.parseFloat(max_grade),name);
     }
+    public Exam change(Exam exam){
+        Field teacher_id = new Field("teacher_id",exam.getTeacher().getId());
+        Field name = new Field("name",exam.getName());
+        Field is_multi_question = new Field("is_multi_question",exam.isMultiQuestion()?"1":"0");
+        Field max_grade = new Field("max_grade",String.valueOf(exam.getMaxGrade()));
+        Field starting_time = new Field("starting_time",exam.getStartingTime());
+        Field finishing_time = new Field("finishing_time",exam.getFinishingTime());
+        FieldMap fm = new FieldMap(teacher_id,name,is_multi_question,max_grade,starting_time,finishing_time);
+        Field filter = new Field("id",exam.getId());
+        db.update("exams",filter,fm);
+        return exam;
+    }
+
 }

@@ -1,6 +1,7 @@
 package ir.bahonar.azmooneh.DA;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -18,10 +19,56 @@ public class DataBase {
 
     //base obj
     private final SQLiteDatabase myDataBase;
+    SharedPreferences sh;
 
     //constructor
     public DataBase(){
         myDataBase = ActivityHolder.activity.openOrCreateDatabase("database.db",0,null);
+        sh = ActivityHolder.activity.getPreferences(0);
+    }
+
+    //is signed in
+    public boolean isSignedIn(){
+        return sh.getBoolean("isSignedIn",false);
+    }
+    public boolean isFirstIn(){
+        return sh.getBoolean("isFirstIn",false);
+    }
+
+    //create all tables
+    public void createTables(){
+        //Users
+        {
+            Field number = new Field("number", "VARCHAR(20)");
+            Field username = new Field("username", "VARCHAR(20)");
+            Field password = new Field("password", "VARCHAR(20)");
+            Field firstName = new Field("firstName", "VARCHAR(20)");
+            Field lastName = new Field("lastName", "VARCHAR(20)");
+            Field type = new Field("type", "VARCHAR(8)");
+            Field profile = new Field("profile", "TEXT");
+            FieldMap hm = new FieldMap(number, username, password, firstName, lastName, type,profile);
+            createTable("users", hm, true);
+        }
+
+        //Questions
+        {
+            Field number = new Field("number", "VARCHAR(5)");
+            Field text = new Field("text", "TEXT");
+            Field picture = new Field("picture", "TEXT");
+            Field exam = new Field("exam_id", "VARCHAR(5)");
+            Field maxGrade = new Field("max_grade", "VARCHAR(10)");
+            Field choices = new Field("choices", "VARCHAR(2)");
+            FieldMap hm = new FieldMap(number, text, picture, exam, maxGrade, choices);
+            createTable("questions", hm, true);
+        }
+
+        //exam to user
+        {
+            Field number = new Field("exam_id", "VARCHAR(5)");
+            Field text = new Field("user_id", "VARCHAR(5)");
+            FieldMap hm = new FieldMap(number, text);
+            createTable("exam_to_user", hm, true);
+        }
     }
 
     //create

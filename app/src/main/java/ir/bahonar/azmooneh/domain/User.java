@@ -3,8 +3,12 @@ package ir.bahonar.azmooneh.domain;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class User{
+import ir.bahonar.azmooneh.DA.UserDA;
+import ir.bahonar.azmooneh.domain.exam.Exam;
+
+public class User implements Serializable{
 
     //fields
     private final String id;
@@ -65,5 +69,11 @@ public class User{
     //checking problems
     public boolean isComplete(){
         return !id.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !username.isEmpty() && !password.isEmpty() && type != null;
+    }
+
+    //get exams
+    public List<Exam> getExams(){
+        UserDA uda = new UserDA();
+        return uda.getExam(id);
     }
 }

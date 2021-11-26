@@ -1,5 +1,6 @@
 package ir.bahonar.azmooneh.domain.answer;
 
+import ir.bahonar.azmooneh.DA.CorrectAnswerDA;
 import ir.bahonar.azmooneh.domain.Question;
 
 public class CorrectAnswer {
@@ -14,6 +15,11 @@ public class CorrectAnswer {
         this.id = id;
         this.question = question;
         this.answer = answer;
+    }
+    public CorrectAnswer(String id, CorrectAnswer correctAnswer){
+        this.id = id;
+        this.question = correctAnswer.question;
+        this.answer = correctAnswer.answer;
     }
 
     //getters

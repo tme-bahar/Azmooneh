@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Azmooneh">
         <activity
+            android:name=".FirstExamStatus"
+            android:exported="true" />
+        <activity
+            android:name=".QuestionFileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".QuestionTypingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Question4ChoiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainPage"
+            android:exported="true" />
+        <activity
+            android:name=".SignUp"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
