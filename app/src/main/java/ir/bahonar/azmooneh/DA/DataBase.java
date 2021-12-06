@@ -1,6 +1,7 @@
 package ir.bahonar.azmooneh.DA;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -23,7 +24,7 @@ public class DataBase {
 
     //constructor
     public DataBase(){
-        myDataBase = ActivityHolder.activity.openOrCreateDatabase("database.db",0,null);
+        myDataBase = ActivityHolder.activity.openOrCreateDatabase("database.db", Context.MODE_PRIVATE,null);
         sh = ActivityHolder.activity.getPreferences(0);
     }
 
@@ -68,6 +69,19 @@ public class DataBase {
             Field text = new Field("user_id", "VARCHAR(5)");
             FieldMap hm = new FieldMap(number, text);
             createTable("exam_to_user", hm, true);
+        }
+
+        //exam
+        {
+            Field number = new Field("teacher_id", "VARCHAR(5)");
+            Field is_multi_question = new Field("is_multi_question", "VARCHAR(1)");
+            Field text = new Field("name", "TEXT");
+            Field maxGrade = new Field("max_grade", "VARCHAR(5)");
+            Field starting_time = new Field("starting_time", "VARCHAR(10)");
+            Field finishing_time = new Field("finishing_time", "VARCHAR(10)");
+            Field teacher_id = new Field("teacher_id", "VARCHAR(5)");
+            FieldMap hm = new FieldMap(number, text,maxGrade,starting_time,finishing_time,teacher_id,is_multi_question);
+            createTable("exams", hm, true);
         }
     }
 
@@ -124,7 +138,8 @@ public class DataBase {
             return;
         StringBuilder sb = new StringBuilder("UPDATE " + tableName + " SET ");
         for (Field f:data.getAll())
-            sb.append(f.getKey()).append(" = '").append(f.getValue()).append("'");
+            sb.append(f.getKey()).append(" = '").append(f.getValue()).append("',");
+        sb.replace(sb.length()-1,sb.length(),"");
         sb.append(" WHERE ").append(filter.getKey()).append(" = '").append(filter.getValue()).append("'");
         myDataBase.execSQL(sb.toString());
     }

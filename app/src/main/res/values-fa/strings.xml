@@ -16,7 +16,7 @@
     <string name="teacher">استاد</string>
     <string name="valid_acount">حساب کاربری دارید ؟</string>
     <string name="notValid">نامعتبر</string>
-    <string name="notValidText">چنین کاربری وجود ندارد !<br/> میخواهید ثبت نام کنید ؟</string>
+    <string name="notValidText">چنین کاربری وجود ندارد ! میخواهید ثبت نام کنید ؟</string>
     <string name="cancel">لغو</string>
     <string name="valid">کاربر موجود</string>
     <string name="validText">نام کاربری موجود است  آیا مایل به ورود هستید ؟</string>
@@ -48,4 +48,26 @@
     <string name="write_a_question">یه سوال بنویس</string>
     <string name="choose_file">انتخاب فایل</string>
     <string name="save">ذخیره</string>
+    <string name="enter_your_new_number">شماره را وارد کنید</string>
+    <string name="number">شماره</string>
+    <string name="enter_your_firstname">نام خود را وارد کنید</string>
+    <string name="enter_your_lastname">نام خانوادگی خود را وارد کنید</string>
+    <string name="student_list">لیست اعضاء</string>
+    <string name="question_list">لیست سوالات</string>
+    <string name="retype_new_password">تکرار رمز عبور</string>
+    <string name="new_password">رمز جدید</string>
+    <string name="text">تشریحی</string>
+    <string name="_4_choice">تستی</string>
+    <string name="are_you_sure">آیا شما مطمئن هستید ؟</string>
+    <string name="are_you_sure_message">آیا مطمئن هستید که میخواهید این پرسش را حذف کنید ؟</string>
+    <string name="yes">بله</string>
+    <string name="No">خیر</string>
+    <string name="question_Removed">پرسش حذف شد</string>
+    <string name="are_you_sure_messege_student">آیا مطمئنید که میخواهید این دانش آموز را حذف کنید ؟</string>
+    <string name="File">فایل</string>
+    <string name="which">کدام یک ؟</string>
+    <string name="which_message">کدام نوع سوال میخواهید اضافه کنید ؟</string>
+    <string name="Exam_added">امتحان افزوده شد</string>
+    <string name="are_you_sure_exam">آیا مطمئنید که میخواهید این امتحان را حذف کنید ؟</string>
+    <string name="minute">دقیقه</string>
 </resources>

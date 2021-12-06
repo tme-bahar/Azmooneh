@@ -1,14 +1,16 @@
-package ir.bahonar.azmooneh;
+package ir.bahonar.azmooneh.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+
+import java.util.Objects;
+
+import ir.bahonar.azmooneh.R;
 
 public class FirstExamStatus extends AppCompatActivity {
 
@@ -16,6 +18,7 @@ public class FirstExamStatus extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam_info_page);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         Button start = findViewById(R.id.button7);
         CheckBox cb = findViewById(R.id.checkBox);
         View hider = findViewById(R.id.view);

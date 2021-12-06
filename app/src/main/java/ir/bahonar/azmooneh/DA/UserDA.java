@@ -2,6 +2,7 @@ package ir.bahonar.azmooneh.DA;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
 import ir.bahonar.azmooneh.DA.relatedObjects.Field;
 import ir.bahonar.azmooneh.DA.relatedObjects.FieldMap;
+import ir.bahonar.azmooneh.domain.Question;
 import ir.bahonar.azmooneh.domain.User;
 import ir.bahonar.azmooneh.domain.exam.Exam;
 
@@ -69,6 +71,25 @@ public class UserDA {
         type = cursor.getString(cursor.getColumnIndexOrThrow("type")).equals("student")? User.userType.STUDENT: User.userType.TEACHER;
         profile = cursor.getString(cursor.getColumnIndexOrThrow("profile"));
         return new User(id,number,firstName,lastName,username,password,type,profile);
+    }
+    public List<User> getAllStudents(){
+        List<User> result = new ArrayList<>();
+        Field filter = new Field("type",User.userType.STUDENT.toString());
+        Cursor cursor = db.select("users",null,filter,null);
+        if(cursor == null)
+            return null;
+        while (cursor.moveToNext()){
+            String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+            String number = cursor.getString(cursor.getColumnIndexOrThrow("number"));
+            String username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+            String firstName = cursor.getString(cursor.getColumnIndexOrThrow("firstName"));
+            String lastName = cursor.getString(cursor.getColumnIndexOrThrow("lastName"));
+            User.userType type = cursor.getString(cursor.getColumnIndexOrThrow("type")).equals("student")? User.userType.STUDENT: User.userType.TEACHER;
+            String profile = cursor.getString(cursor.getColumnIndexOrThrow("profile"));
+            result.add(new User(id,number,firstName,lastName,username,password,type,profile));
+        }
+        return result;
     }
 
     public boolean isValidUser(String username){
@@ -135,11 +156,13 @@ public class UserDA {
 
     //get exams
     public List<Exam> getExam(String id){
+        Log.e("getExam",id);
         Field filter = new Field("user_id",id);
         List<Exam> result = new ArrayList<>();
         List<String> projection = new ArrayList<>();
         projection.add("exam_id");
-        Cursor cursor =db.select("exam_to_user",projection,filter,null);
+        Cursor cursor =db.select("exam_to_user",projection,null,null);
+        Log.e("cursor",String.valueOf(cursor.getCount()));
         if(cursor == null)
             return result;
         if(cursor.getCount() < 1)
@@ -153,5 +176,40 @@ public class UserDA {
         for (String i:ids)
             result.add(eda.get(i));
         return result;
+    }
+    public List<Exam> getExamTeacher(String teacher_id){
+        Field filter = new Field("teacher_id",teacher_id);
+        List<Exam> result = new ArrayList<>();
+        Cursor cursor =db.select("exams",null,filter,null);
+        if(cursor == null)
+            return result;
+        if(cursor.getCount() < 1)
+            return result;
+        while (cursor.moveToNext()){
+            String id = cursor.getString(cursor.getColumnIndexOrThrow("id"));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String is_multi_question = cursor.getString(cursor.getColumnIndexOrThrow("is_multi_question"));
+            String starting_time = cursor.getString(cursor.getColumnIndexOrThrow("starting_time"));
+            String finishing_time = cursor.getString(cursor.getColumnIndexOrThrow("finishing_time"));
+            String max_grade = cursor.getString(cursor.getColumnIndexOrThrow("max_grade"));
+            Exam exam = new Exam(id,(new UserDA()).get(teacher_id),is_multi_question.equals("1"),starting_time,finishing_time,Float.parseFloat(max_grade),name);
+            result.add(exam);
+        }
+        return result;
+    }
+
+    //change
+    public void change(User user){
+        Field number = new Field("number",user.getNumber());
+        Field firstName = new Field("firstName",user.getFirstName());
+        Field lastName = new Field("lastName",user.getLastName());
+        Field username = new Field("username",user.getUsername());
+        Field password = new Field("password",user.getPassword());
+        Field type = new Field("type",user.getType().toString());
+        Field profile = new Field("profile",user.getProfile());
+        FieldMap fm = new FieldMap(number,firstName,lastName,username,
+                password,type,profile);
+        Field filter = new Field("id",user.getId());
+        db.update("users",filter,fm);
     }
 }

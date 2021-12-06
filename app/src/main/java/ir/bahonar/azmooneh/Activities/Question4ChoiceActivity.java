@@ -1,18 +1,17 @@
-package ir.bahonar.azmooneh;
+package ir.bahonar.azmooneh.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import java.util.Objects;
+
+import ir.bahonar.azmooneh.R;
 
 public class Question4ChoiceActivity extends AppCompatActivity {
     int answer = -1;

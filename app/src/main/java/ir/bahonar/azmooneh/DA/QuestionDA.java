@@ -36,6 +36,11 @@ public class QuestionDA {
         question = new Question(id,question);
         return question;
     }
+    public void add(List<Question> questions){
+        for (Question q:questions)
+            add(q);
+
+    }
     public Question get(String id){
         Field filter = new Field("id",id);
         Cursor cursor = db.select("questions",null,filter,null);

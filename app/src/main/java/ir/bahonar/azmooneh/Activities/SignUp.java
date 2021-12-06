@@ -1,4 +1,4 @@
-package ir.bahonar.azmooneh;
+package ir.bahonar.azmooneh.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Objects;
 
 import ir.bahonar.azmooneh.DA.UserDA;
+import ir.bahonar.azmooneh.R;
 import ir.bahonar.azmooneh.domain.User;
 
 public class SignUp extends AppCompatActivity {

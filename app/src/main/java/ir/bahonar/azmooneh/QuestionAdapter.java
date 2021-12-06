@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,39 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import ir.bahonar.azmooneh.Activities.QuestionList;
 import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
+import ir.bahonar.azmooneh.domain.Question;
 import ir.bahonar.azmooneh.domain.User;
-import ir.bahonar.azmooneh.domain.exam.Exam;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
 
-    private final List<Exam> localDataSet;
+    private final List<Question> localDataSet;
     private OnItemClickListener onItemClickListener;
-    private OnItemLongClickListener onItemLongClickListener;
     public interface OnItemClickListener {
-        void onItemClick(Exam exam,int position);
-    }
-    public interface OnItemLongClickListener {
-        void onItemClick(Exam exam,int position);
+        void onItemClick(Question question, int position);
     }
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public final TextView dateAndTime;
-        public final TextView teacher;
-        public final TextView status;
-        public final TextView name;
+        public final TextView type;
+        public final TextView number;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-
-            dateAndTime = (TextView) view.findViewById(R.id.textView4);
-            teacher = (TextView) view.findViewById(R.id.textView7);
-            status = (TextView) view.findViewById(R.id.textView15);
-            name = (TextView) view.findViewById(R.id.textView17);
+            type = (TextView) view.findViewById(R.id.textView28);
+            number = (TextView) view.findViewById(R.id.textView19);
         }
 
     }
@@ -54,7 +47,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public Adapter(List<Exam> dataSet) {
+    public QuestionAdapter(List<Question> dataSet) {
         localDataSet = dataSet;
     }
 
@@ -64,7 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.list_item, viewGroup, false);
+                .inflate(R.layout.questionlist, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -76,25 +69,20 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.dateAndTime.setText(localDataSet.get(position).getStartingTime());
-        viewHolder.teacher.setText(localDataSet.get(position).getTeacher().getFirstName() + " " +localDataSet.get(position).getTeacher().getLastName());
+        try{
+        String type = ActivityHolder.activity.getResources().getString(localDataSet.get(position).getChoices() < 2 ? R.string._4_choice : R.string.text);
+        viewHolder.number.setText(localDataSet.get(position).getNumber());
+        viewHolder.type.setText(type);
         //TODO Status must complete
-        viewHolder.status.setText(localDataSet.get(position).getStatus() == Exam.Status.running ?
-                ActivityHolder.activity.getResources().getString(R.string.running):"");
-        viewHolder.name.setText(localDataSet.get(position).getName());
-        viewHolder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(localDataSet.get(position),position));
-        viewHolder.itemView.setOnLongClickListener(v -> {
-            onItemLongClickListener.onItemClick(localDataSet.get(position),position);
-            return true;
-        });
+        viewHolder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(localDataSet.get(position),position));}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
-    }
-    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener){
-        this.onItemLongClickListener = onItemLongClickListener;
     }
     // Return the size of your dataset (invoked by the layout manager)
     @Override

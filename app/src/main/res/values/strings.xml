@@ -15,10 +15,10 @@
     <string name="teacher">Teacher</string>
     <string name="valid_acount">You have an acount ?</string>
     <string name="notValid">not valid</string>
-    <string name="notValidText">user not valid !\n do you want to sing up ?</string>
+    <string name="notValidText">user not valid ! do you want to sing up ?</string>
     <string name="cancel">cancel</string>
     <string name="valid">userValid</string>
-    <string name="validText">username already was taken \\n do you want to sign in ?</string>
+    <string name="validText">username already was taken  do you want to sign in ?</string>
     <string name="Empty">Empty value</string>
     <string name="EmtyText">please fill all the blanks</string>
     <string name="OK">ok</string>
@@ -47,4 +47,37 @@
     <string name="write_a_question">write a question</string>
     <string name="choose_file">choose a file</string>
     <string name="save">save</string>
+    <string name="enter_your_new_number">enter your new number</string>
+    <string name="number">number</string>
+    <string name="enter_your_firstname">enter your firstname</string>
+    <string name="enter_your_lastname">enter your lastname</string>
+    <string name="student_list">student list</string>
+    <string name="question_list">question list</string>
+    <string name="title_activity_profile" translatable="false">profileActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="retype_new_password">retype new password</string>
+    <string name="new_password">new password</string>
+    <string name="text">text</string>
+    <string name="_4_choice">4 choice</string>
+    <string name="title_activity_file_question_edit" translatable="false">FileQuestionEdit</string>
+    <string name="are_you_sure">are you sure ?</string>
+    <string name="are_you_sure_message">are you sure to remove this question ?</string>
+    <string name="yes">yes</string>
+    <string name="No">No</string>
+    <string name="question_Removed">question Removed</string>
+    <string name="are_you_sure_messege_student">are you sure to remove this student ?</string>
+    <string name="File">File</string>
+    <string name="which">which one ?</string>
+    <string name="which_message">which type of question do you want to add ?</string>
+    <string name="Exam_added">Exam added</string>
+    <string name="are_you_sure_exam">are you sure to remove this exam ?</string>
+    <string name="minute">minute</string>
+    <string name="Exam_added">Exam added</string>
+    <string name="warning">WARNING</string>
+    <string name="not_formatted">Date or Time format is not correct</string>
 </resources>

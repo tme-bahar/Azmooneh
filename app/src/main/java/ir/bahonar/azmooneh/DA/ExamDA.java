@@ -34,6 +34,12 @@ public class ExamDA {
         FieldMap hm = new FieldMap(teacher_id,name,is_multi_question,starting_time,finishing_time,max_grade);
         String id = db.insert("exams",hm);
         exam = new Exam(id,exam);
+        for (User student:exam.getStudents()) {
+            Field number = new Field("exam_id",exam.getId());
+            Field text = new Field("user_id",student.getId());
+            FieldMap hm1 = new FieldMap(number, text);
+            String i = db.insert("exam_to_user",hm1);
+        }
         return exam;
     }
     public void delete(String id){

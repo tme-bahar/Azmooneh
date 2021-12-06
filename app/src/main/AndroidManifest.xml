@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ir.bahonar.azmooneh">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,25 +12,48 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Azmooneh">
         <activity
-            android:name=".FirstExamStatus"
+            android:name=".Activities.TestQuestionEdit"
             android:exported="true" />
         <activity
-            android:name=".QuestionFileActivity"
+            android:name=".Activities.TextQuestionEdit"
             android:exported="true" />
         <activity
-            android:name=".QuestionTypingActivity"
+            android:name=".Activities.FileQuestionEdit"
             android:exported="true" />
         <activity
-            android:name=".Question4ChoiceActivity"
+            android:name=".Activities.StudentList"
             android:exported="true" />
         <activity
-            android:name=".MainPage"
+            android:name=".Activities.QuestionList"
             android:exported="true" />
         <activity
-            android:name=".SignUp"
+            android:name=".Activities.ExamStatusTeacher"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.ProfileActivity"
+            android:exported="true"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.Azmooneh.NoActionBar" />
+        <activity
+            android:name=".Activities.FirstExamStatus"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.QuestionFileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.QuestionTypingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.Question4ChoiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MainPage"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.SignUp"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

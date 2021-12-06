@@ -11,11 +11,14 @@
         <entry key="..\:/my program/Azmooneh/app/src/main/res/drawable/student_btn.xml" value="0.1" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/drawable/teacher_btn.xml" value="0.1" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_exam_info_page.xml" value="0.335" />
-        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_exam_info_page_for_tecaher.xml" value="0.16621376811594202" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_exam_info_page_for_tecaher.xml" value="0.25" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_exam_status_teacher.xml" value="0.17028985507246377" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_main_page.xml" value="0.1" />
-        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_profile_page.xml" value="0.335" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_profile_page.xml" value="0.5" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_file.xml" value="0.16893115942028986" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_list.xml" value="0.17798913043478262" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_list2.xml" value="0.17028985507246377" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_page_type.xml" value="0.18070652173913043" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_page_type1.xml" value="0.18070652173913043" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_page_type1_for_teacher.xml" value="0.335" />
@@ -25,7 +28,11 @@
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_page_type3_for_teacher.xml" value="0.15670289855072464" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_question_typing.xml" value="0.15208333333333332" />
         <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_signup_page.xml" value="0.25" />
-        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/list_item.xml" value="0.1" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_student_list.xml" value="0.17798913043478262" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/activity_student_list2.xml" value="0.17028985507246377" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/list_item.xml" value="0.25" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/questionlist.xml" value="0.17798913043478262" />
+        <entry key="..\:/my program/Azmooneh/app/src/main/res/layout/studentli.xml" value="0.17798913043478262" />
       </map>
     </option>
   </component>

@@ -1,5 +1,7 @@
 package ir.bahonar.azmooneh.domain.exam;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +17,13 @@ public class Exam {
     private final String id;
     private final User teacher;
     private final String name;
-    private final List<User> students;
-    private final List<Question> questions;
+    private  List<User> students;
+    private  List<Question> questions;
     private final boolean isMultiQuestion;
     private final String startingTime;
     private final String finishingTime;
     private final float maxGrade;
-    private final Answers studentAnswers;
+    private  Answers studentAnswers;
     public enum Status {notStarted, running , finished}
 
     //constructor
@@ -48,6 +50,12 @@ public class Exam {
         this.finishingTime = exam.finishingTime;
         this.maxGrade = exam.maxGrade;
         this.studentAnswers = exam.studentAnswers;
+        students = new ArrayList<>();
+        questions = new ArrayList<>();
+        studentAnswers = new Answers(this);
+        this.studentAnswers = exam.getStudentAnswers();
+        this.students.addAll(exam.getStudents());
+        this.questions.addAll(exam.getQuestions());
     }
     //getters
 
@@ -121,10 +129,17 @@ public class Exam {
         return true;
     }
 
-    public boolean addStudent(User... students) {
+    public boolean addStudents(User... students) {
         boolean result = true;
         for (User u : students)
             result &= addStudent(u);
+        return result;
+    }
+    public boolean addStudents(List<User> users) {
+        boolean result = true;
+        for (User u : users)
+            result &= addStudent(u);
+        Log.e("result",String.valueOf(result));
         return result;
     }
 
@@ -144,7 +159,12 @@ public class Exam {
         return result;
     }
 
-    public boolean addQuestions(List<Question> questions){return addQuestion((Question[]) questions.toArray());}
+    public boolean addQuestions(List<Question> questions){
+        boolean result = true;
+        for (Question q : questions)
+            result &= addQuestion(q);
+        return result;
+    }
     public boolean isFull() {
         int sum = 0;
         for (Question q : questions)

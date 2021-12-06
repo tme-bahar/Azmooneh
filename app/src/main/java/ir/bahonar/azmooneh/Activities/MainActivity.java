@@ -1,25 +1,20 @@
-package ir.bahonar.azmooneh;
+package ir.bahonar.azmooneh.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Objects;
 
-import ir.bahonar.azmooneh.DA.DataBase;
 import ir.bahonar.azmooneh.DA.UserDA;
 import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
+import ir.bahonar.azmooneh.R;
 import ir.bahonar.azmooneh.domain.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
         ActivityHolder.activity = this;
         new UserDA().isFirstIn();
+        //initialize
         EditText username = findViewById(R.id.editTextTextPersonName);
         EditText password = findViewById(R.id.editTextTextPassword);
         TextView signUp = findViewById(R.id.textView3);
