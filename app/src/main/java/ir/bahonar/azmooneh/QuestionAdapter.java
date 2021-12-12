@@ -21,7 +21,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     private final List<Question> localDataSet;
     private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
     public interface OnItemClickListener {
+        void onItemClick(Question question, int position);
+    }
+    public interface OnItemLongClickListener {
         void onItemClick(Question question, int position);
     }
     /**
@@ -35,8 +39,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-            type = (TextView) view.findViewById(R.id.textView28);
-            number = (TextView) view.findViewById(R.id.textView19);
+            type = view.findViewById(R.id.textView28);
+            number = view.findViewById(R.id.textView19);
         }
 
     }
@@ -70,11 +74,16 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         try{
-        String type = ActivityHolder.activity.getResources().getString(localDataSet.get(position).getChoices() < 2 ? R.string._4_choice : R.string.text);
-        viewHolder.number.setText(localDataSet.get(position).getNumber());
+        String type = ActivityHolder.activity.getResources().getString(localDataSet.get(position).getChoices() > 1 ? R.string._4_choice : R.string.text);
+        viewHolder.number.setText(ActivityHolder.activity.getResources().getString(R.string.question)+" : "
+        +(localDataSet.get(position).getNumber()+1));
         viewHolder.type.setText(type);
         //TODO Status must complete
-        viewHolder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(localDataSet.get(position),position));}
+        viewHolder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(localDataSet.get(position),position));
+        viewHolder.itemView.setOnLongClickListener(v->{onItemLongClickListener.onItemClick(localDataSet.get(position),position);
+            return false;
+        });
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,6 +92,9 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
+    }
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener){
+        this.onItemLongClickListener = onItemLongClickListener;
     }
     // Return the size of your dataset (invoked by the layout manager)
     @Override

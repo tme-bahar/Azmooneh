@@ -1,12 +1,18 @@
 package ir.bahonar.azmooneh.domain.exam;
 
+import android.os.Build;
 import android.util.Log;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.annotation.RequiresApi;
 
-import ir.bahonar.azmooneh.DA.relatedObjects.ActivityHolder;
-import ir.bahonar.azmooneh.R;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicReference;
+
 import ir.bahonar.azmooneh.domain.Question;
 import ir.bahonar.azmooneh.domain.User;
 import ir.bahonar.azmooneh.domain.answer.Answers;
@@ -95,8 +101,11 @@ public class Exam {
         return name;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public float getMaxGrade() {
-        return maxGrade;
+        float max = 0f;
+        for (Question q:questions) max+=q.getMaxGrade();
+        return max;
     }
 
     public User getStudentById(String id) {
@@ -180,7 +189,18 @@ public class Exam {
 
     //get status
     public Status getStatus(){
-        //TODO : Code HERE
-        return Status.running;
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm'&'yyyy/MM/dd", Locale.ENGLISH);
+        try {
+            Date start = formatter.parse(startingTime);
+            Date finish = formatter.parse(finishingTime);
+            Date now = new Date();
+            if(start.getTime() > now.getTime())
+                return Status.notStarted;
+            if(finish.getTime() > now.getTime())
+                return Status.running;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return Status.finished;
     }
 }

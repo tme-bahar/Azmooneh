@@ -73,52 +73,121 @@
                     android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="268dp"
-                    android:clickable="false"
                     android:layout_marginBottom="72dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:clickable="false"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        android:layout_height="match_parent">
 
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
+                        <EditText
+                            android:id="@+id/editTextTextPersonName24"
+                            android:layout_width="237dp"
+                            android:layout_height="63dp"
+                            android:ems="10"
+                            android:hint=""
+                            android:inputType="textPersonName"
+                            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName22"
+                            app:layout_constraintStart_toEndOf="@+id/radioButton11"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:clickable="false"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
+                        <RadioButton
+                            android:id="@+id/radioButton17"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
 
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
+                            android:layout_marginBottom="204dp"
+                            android:textColor="#fff"
+                            android:textSize="22sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:layout_marginBottom="20dp"
+                        <EditText
+                            android:id="@+id/editTextTextPersonName22"
+                            android:layout_width="241dp"
+                            android:layout_height="49dp"
+                            android:layout_marginBottom="64dp"
+                            android:ems="10"
+                            android:hint=""
+                            android:inputType="textPersonName"
+                            app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName21"
+                            app:layout_constraintStart_toEndOf="@+id/radioButton11"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
+                        <RadioButton
+                            android:id="@+id/radioButton15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
 
-                    <RadioButton
-                        android:id="@+id/radioButton5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
+                            android:layout_marginBottom="140dp"
+                            android:textColor="#fff"
+                            android:textSize="22sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:ignore="DuplicateClickableBoundsCheck" />
 
-                        android:textColor="#fff"
+                        <RadioButton
+                            android:id="@+id/radioButton14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
 
-                        android:textSize="22sp" />
+                            android:layout_marginBottom="16dp"
+                            android:textColor="#fff"
+                            android:textSize="22sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editTextTextPersonName21"
+                            android:layout_width="234dp"
+                            android:layout_height="58dp"
+                            android:layout_marginBottom="12dp"
+                            android:ems="10"
+                            android:hint=""
+                            android:inputType="textPersonName"
+                            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName12"
+                            app:layout_constraintStart_toEndOf="@+id/radioButton11"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginBottom="80dp"
+                            android:textColor="#fff"
+                            android:textSize="22sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <EditText
+                            android:id="@+id/editTextTextPersonName12"
+                            android:layout_width="234dp"
+                            android:layout_height="58dp"
+                            android:layout_marginBottom="16dp"
+                            android:ems="10"
+                            android:hint=""
+                            android:inputType="textPersonName"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/radioButton11"
+                            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginBottom="140dp"
+                            android:textColor="#fff"
+                            android:textSize="22sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </RadioGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,5 +206,29 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="5/16"
+        android:paddingHorizontal="25sp"
+        android:background="#fff"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="@string/grade"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

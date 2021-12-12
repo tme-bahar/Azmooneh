@@ -173,12 +173,19 @@ public class UserDA {
             ids.add(newId);
         }
         ExamDA eda = new ExamDA();
-        for (String i:ids)
-            result.add(eda.get(i));
+        QuestionDA qda = new QuestionDA();
+        for (String i:ids){
+            Exam exam = eda.get(i);
+            if(exam == null)
+                continue;
+            exam.addQuestions(qda.get(exam));
+            result.add(exam);
+        }
         return result;
     }
     public List<Exam> getExamTeacher(String teacher_id){
         Field filter = new Field("teacher_id",teacher_id);
+        QuestionDA qda = new QuestionDA();
         List<Exam> result = new ArrayList<>();
         Cursor cursor =db.select("exams",null,filter,null);
         if(cursor == null)
@@ -193,6 +200,7 @@ public class UserDA {
             String finishing_time = cursor.getString(cursor.getColumnIndexOrThrow("finishing_time"));
             String max_grade = cursor.getString(cursor.getColumnIndexOrThrow("max_grade"));
             Exam exam = new Exam(id,(new UserDA()).get(teacher_id),is_multi_question.equals("1"),starting_time,finishing_time,Float.parseFloat(max_grade),name);
+            exam.addQuestions(qda.get(exam));
             result.add(exam);
         }
         return result;

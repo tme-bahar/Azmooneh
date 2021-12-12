@@ -2,6 +2,7 @@ package ir.bahonar.azmooneh.DA;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,11 +25,11 @@ public class QuestionDA {
         editor = sharedPref.edit();
     }
 
-    public Question add(Question question){
+    public Question add(Question question,Exam e){
         Field number = new Field("number",String.valueOf(question.getNumber()));
         Field text = new Field("text",question.getText());
         Field picture = new Field("picture",question.getPicture());
-        Field exam = new Field("exam_id",question.getExam().getId());
+        Field exam = new Field("exam_id",e.getId());
         Field maxGrade = new Field("max_grade",String.valueOf(question.getMaxGrade()));
         Field choices = new Field("choices",String.valueOf(question.getChoices()));
         FieldMap hm = new FieldMap(number,text,picture,exam,maxGrade,choices);
@@ -36,9 +37,9 @@ public class QuestionDA {
         question = new Question(id,question);
         return question;
     }
-    public void add(List<Question> questions){
+    public void add(List<Question> questions,Exam exam){
         for (Question q:questions)
-            add(q);
+            add(q,exam);
 
     }
     public Question get(String id){

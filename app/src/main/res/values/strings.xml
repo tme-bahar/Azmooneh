@@ -77,7 +77,17 @@
     <string name="Exam_added">Exam added</string>
     <string name="are_you_sure_exam">are you sure to remove this exam ?</string>
     <string name="minute">minute</string>
-    <string name="Exam_added">Exam added</string>
     <string name="warning">WARNING</string>
     <string name="not_formatted">Date or Time format is not correct</string>
+    <string name="choose_type">please choose a type fot exam</string>
+    <string name="write_duration">write a duration for exam</string>
+    <string name="not_started">not started</string>
+    <string name="grade">grade</string>
+    <string name="grade_empty">grade must have a value</string>
+    <string name="text_empty">question must have text</string>
+    <string name="grade_invalid">grade is invalid</string>
+    <string name="questions">Questions</string>
+    <string name="question">question</string>
+    <string name="enter_your_exam_name">Enter your exam name</string>
+    <string name="write_name">write a name for exam</string>
 </resources>

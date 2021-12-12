@@ -1,5 +1,6 @@
 package ir.bahonar.azmooneh.Activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import ir.bahonar.azmooneh.domain.exam.Exam;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -29,6 +31,7 @@ import java.util.Objects;
 
 public class ExamStatusTeacher extends AppCompatActivity {
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class ExamStatusTeacher extends AppCompatActivity {
         RadioButton text = findViewById(R.id.radioButton6);
         RadioButton test = findViewById(R.id.radioButton7);
         EditText duration = findViewById(R.id.editTextNumber);
+        EditText name = findViewById(R.id.editTextTextPersonName13);
         Button save = findViewById(R.id.button7);
 
         if(ActivityHolder.exam==null || ActivityHolder.exam.getId() == null){
@@ -71,27 +75,45 @@ public class ExamStatusTeacher extends AppCompatActivity {
         studentList.setOnClickListener(v->{startActivity(new Intent(this,StudentList.class));});
         save.setOnClickListener(v->{
             //TODO : TEMP! must some changes to new exam
-            try {
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm'&'yyyy/MM/dd", Locale.ENGLISH);
-                Date start = formatter.parse(ActivityHolder.exam.getStartingTime());
-                long finishingMSeconds = start.getTime() + (Long.parseLong(duration.getText().toString())*60000);
-                Date finishing = new Date(finishingMSeconds);
-                Exam exam = new Exam("*", ActivityHolder.user, test.isChecked(), time.getText().toString() + "&" + date.getText().toString(),
-                        formatter.format(finishing), 20, "exam");
-                exam.addQuestions(ActivityHolder.exam.getQuestions());
-                exam.addStudents(ActivityHolder.exam.getStudents());
-                ExamDA eda = new ExamDA();
-                QuestionDA qda = new QuestionDA();
-                qda.add(exam.getQuestions());
-                eda.add(exam);
-                Toast.makeText(getApplicationContext(), R.string.Exam_added, Toast.LENGTH_LONG).show();
-                startActivity(new Intent(this, MainPage.class));
-                finish();
-            }catch (Exception e){
-                AlertDialog.Builder alert = new AlertDialog.Builder(this);
-                alert.setTitle(getResources().getString(R.string.warning));
-                alert.setMessage(getResources().getString(R.string.not_formatted));
-                alert.setNegativeButton(getResources().getString(R.string.OK), (d, w) -> d.dismiss());
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle(getResources().getString(R.string.warning));
+            alert.setNegativeButton(getResources().getString(R.string.OK), (d, w) -> d.dismiss());
+            if(duration.getText().toString().isEmpty()){
+                alert.setMessage(getResources().getString(R.string.write_duration));
+                alert.show();
+                return;
+            }
+            if(name.getText().toString().isEmpty()){
+                alert.setMessage(getResources().getString(R.string.write_name));
+                alert.show();
+                return;
+            }
+            if(test.isChecked() || text.isChecked()){
+                Exam temp = ActivityHolder.exam;
+                ActivityHolder.exam = new Exam("*",ActivityHolder.user,test.isChecked(),
+                        time.getText().toString()+"&"+date.getText().toString(),"",temp.getMaxGrade(),temp.getName());
+                try {
+                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm'&'yyyy/MM/dd", Locale.ENGLISH);
+                    Date start = formatter.parse(ActivityHolder.exam.getStartingTime());
+                    long finishingMSeconds = start.getTime() + (Long.parseLong(duration.getText().toString())*60000);
+                    Date finishing = new Date(finishingMSeconds);
+                    Exam exam = new Exam("*", ActivityHolder.user, test.isChecked(), time.getText().toString() + "&" + date.getText().toString(),
+                            formatter.format(finishing), 20, name.getText().toString());
+                    exam.addQuestions(temp.getQuestions());
+                    exam.addStudents(temp.getStudents());
+                    ExamDA eda = new ExamDA();
+                    QuestionDA qda = new QuestionDA();
+                    qda.add(exam.getQuestions(),exam);
+                    eda.add(exam);
+                    Toast.makeText(getApplicationContext(), R.string.Exam_added, Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(this, MainPage.class));
+                    finish();
+                }catch (Exception e){
+                    alert.setMessage(getResources().getString(R.string.not_formatted));
+                    alert.show();
+                }
+            }else{
+                alert.setMessage(getResources().getString(R.string.choose_type));
                 alert.show();
             }
         });

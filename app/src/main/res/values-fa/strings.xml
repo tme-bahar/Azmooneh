@@ -70,4 +70,17 @@
     <string name="Exam_added">امتحان افزوده شد</string>
     <string name="are_you_sure_exam">آیا مطمئنید که میخواهید این امتحان را حذف کنید ؟</string>
     <string name="minute">دقیقه</string>
+    <string name="warning">اخطار</string>
+    <string name="not_formatted">فرمت تاریخ یا زمان صحیح نیست !</string>
+    <string name="choose_type">لطفا یک نوع برای امتحان اتتخاب کنید</string>
+    <string name="write_duration">مدت امتحان را تعیین کنید</string>
+    <string name="not_started">شروع نشده</string>
+    <string name="grade">نمره</string>
+    <string name="grade_empty">نمره وارد نشده !</string>
+    <string name="text_empty">متن وارد نشده !</string>
+    <string name="grade_invalid">نمره نامعتبر است !</string>
+    <string name="questions">سوالات</string>
+    <string name="question">سوال</string>
+    <string name="enter_your_exam_name">نام امتحان را وارد کنید</string>
+    <string name="write_name">یک نام برای امتحان وارد نمایید</string>
 </resources>

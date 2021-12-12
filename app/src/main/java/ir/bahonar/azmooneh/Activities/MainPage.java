@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -52,6 +53,7 @@ public class MainPage extends AppCompatActivity {
         notFinishedActivities = findViewById(R.id.textView9);
         rv = findViewById(R.id.list_item);
         FloatingActionButton fbt = findViewById(R.id.floatingActionButton);
+        FloatingActionButton LogOut = findViewById(R.id.floatingActionButton4);
 
         //putting date
         getExams();
@@ -69,9 +71,17 @@ public class MainPage extends AppCompatActivity {
 
 
         //new Exam
-        fbt.setOnClickListener(v->{startActivity(new Intent(this,ExamStatusTeacher.class));
+        fbt.setOnClickListener(v->{
+            ActivityHolder.exam = null;
+            startActivity(new Intent(this,ExamStatusTeacher.class));
         finish();});
 
+        //log out
+        LogOut.setOnClickListener(v->{
+            (new UserDA()).singOut();
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+        });
 
         //float
         prof.setOnClickListener(v->{
@@ -92,7 +102,12 @@ public class MainPage extends AppCompatActivity {
     }
 
     private void getExams(){
-        List<Exam> exams = ActivityHolder.user.getType()== User.userType.TEACHER ?new UserDA().getExamTeacher(ActivityHolder.user.getId()):new UserDA().getExam(ActivityHolder.user.getId());
+        List<Exam> temp = ActivityHolder.user.getType()== User.userType.TEACHER ?new UserDA().getExamTeacher(ActivityHolder.user.getId()):new UserDA().getExam(ActivityHolder.user.getId());
+        List<Exam> exams =new ArrayList<>();
+        for (Exam exam:temp)
+            if(exam != null)
+                exams.add(exam);
+
 
         int NotFinishedActivities = 0;
 
@@ -109,7 +124,6 @@ public class MainPage extends AppCompatActivity {
         //TODO : TEMP
         finishedActivities.setText("0");
         notFinishedActivities.setText("1");
-
         if (exams.size() == 0){
             rv.setVisibility(View.GONE);
         }else{

@@ -2,6 +2,7 @@ package ir.bahonar.azmooneh.DA;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class ExamDA {
             FieldMap hm1 = new FieldMap(number, text);
             String i = db.insert("exam_to_user",hm1);
         }
+        QuestionDA qda = new QuestionDA();
+        qda.add(exam.getQuestions(),exam);
         return exam;
     }
     public void delete(String id){
@@ -53,6 +56,8 @@ public class ExamDA {
         Field filter = new Field("id",id);
         Cursor cursor = db.select("exams",null,filter,null);
         if(cursor == null)
+            return null;
+        if(cursor.getCount() == 0)
             return null;
         cursor.moveToNext();
         String teacher_id = cursor.getString(cursor.getColumnIndexOrThrow("teacher_id"));
