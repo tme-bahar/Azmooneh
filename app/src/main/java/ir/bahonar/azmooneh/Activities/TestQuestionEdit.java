@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -58,6 +59,17 @@ public class TestQuestionEdit extends AppCompatActivity {
                 alert.show();
                 return;
             }
+            if(grade.getText().toString().contains("&")){
+                alert.setMessage(getResources().getString(R.string.deny_text));
+                alert.show();
+                return;
+            }
+            for (EditText r:answers)
+                if(r.getText().toString().contains("&")){
+                    alert.setMessage(getResources().getString(R.string.deny_text));
+                    alert.show();
+                    return;
+                }
             if(text.getText().toString().isEmpty()){
                 alert.setMessage(getResources().getString(R.string.text_empty));
                 alert.show();
@@ -71,8 +83,12 @@ public class TestQuestionEdit extends AppCompatActivity {
                 alert.show();
                 return;
             }
+            StringBuilder tex = new StringBuilder(text.getText().toString());
+            for (EditText r:answers)
+                tex.append("&").append(r.getText().toString());
             Exam temp = ActivityHolder.exam;
-            Question q = new Question("*", temp.getQuestions().size(),text.getText().toString(),"",4,temp,gradeNum);
+            Question q = new Question("*", temp.getQuestions().size(),
+                    tex.toString(),"",4,temp,gradeNum);
             for(int i = 0 ; i < 4 ; i ++)
                 q.setChoiceText(i,answers[i].getText().toString());
             temp.getQuestions().add(q);

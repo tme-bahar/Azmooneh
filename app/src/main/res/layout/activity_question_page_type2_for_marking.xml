@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Question4ChoiceActivity"
+    tools:context=".Activities.MarkTyping"
     android:background="#006C7A"
     android:alpha=".86">
+
     <TextView
-        android:id="@+id/textView33"
+        android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -20,6 +21,7 @@
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="366dp"
         android:layout_height="592dp"
@@ -54,7 +56,7 @@
                     android:layout_height="137dp"
                     android:layout_marginStart="30dp"
                     android:gravity="center_vertical"
-                    android:text="2 × 2 = ?"
+                    android:text=" if ali has two apples and give one on them to reza, now how many apples does ali have??"
                     android:textColor="#fff"
                     android:textSize="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -86,52 +88,42 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
 
-                <RadioGroup
-                    android:id="@+id/radioGrop"
+                <TextView
+                    android:id="@+id/textView35"
                     android:layout_width="match_parent"
-                    android:layout_height="268dp"
-                    android:layout_marginBottom="72dp"
+                    android:layout_height="156dp"
+                    android:lineHeight="35sp"
+                    android:text="fsafsafsafhsahflkjsahfjksahflkjsahflkjahsflkjashflkjashflkjsahflkjhfjfsajfla;ksjfl;kasjfl;asjfl;jsafljs"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintHorizontal_bias="0.058"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="8"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
+                <EditText
+                    android:id="@+id/editTextNumber2"
+                    android:layout_width="336dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="5dp"
+                    android:ems="10"
+                    android:hint="@string/enter_mark_for_this_answer"
+                    android:inputType="date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="6"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="4"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textColor="#fff"
-
-                        android:textSize="22sp" />
-                </RadioGroup>
+                <Button
+                    android:id="@+id/button14"
+                    android:layout_width="200sp"
+                    android:layout_height="60sp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/save_changes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
@@ -165,9 +157,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:background="#fff"
+        android:text="6/16"
         android:paddingHorizontal="25sp"
-        android:text="1/2"
+        android:background="#fff"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

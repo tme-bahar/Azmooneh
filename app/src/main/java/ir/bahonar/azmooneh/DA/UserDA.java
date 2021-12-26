@@ -92,6 +92,32 @@ public class UserDA {
         return result;
     }
 
+    public List<User> getStudents(Exam exam){
+        List<String> projection = new ArrayList<>();
+        projection.add("user_id");
+        Field filter = new Field("exam_id",exam.getId());
+        Cursor cursor =db.select("exam_to_user",projection,filter,null);
+        List<String> ids = new ArrayList<>();
+        if(cursor == null)
+            return null;
+        if(cursor.getCount() == 0)
+            return null;
+        while (cursor.moveToNext()){
+            String userid = cursor.getString(cursor.getColumnIndexOrThrow("user_id"));
+            ids.add(userid);
+        }
+        List<User> result = new ArrayList<>();
+        List<User> all = getAllStudents();
+        if(all == null)
+            return null;
+        for (User student:all)
+            for (String id:ids)
+                if(student.getId().equals(id))
+                    result.add(student);
+
+        return result;
+    }
+
     public boolean isValidUser(String username){
         Field filter = new Field("username",username);
         Cursor cursor = db.select("users",null,filter,null);
@@ -156,7 +182,6 @@ public class UserDA {
 
     //get exams
     public List<Exam> getExam(String id){
-        Log.e("getExam",id);
         Field filter = new Field("user_id",id);
         List<Exam> result = new ArrayList<>();
         List<String> projection = new ArrayList<>();
@@ -201,6 +226,7 @@ public class UserDA {
             String max_grade = cursor.getString(cursor.getColumnIndexOrThrow("max_grade"));
             Exam exam = new Exam(id,(new UserDA()).get(teacher_id),is_multi_question.equals("1"),starting_time,finishing_time,Float.parseFloat(max_grade),name);
             exam.addQuestions(qda.get(exam));
+            exam.addStudents(getStudents(exam));
             result.add(exam);
         }
         return result;

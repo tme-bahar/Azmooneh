@@ -90,4 +90,11 @@
     <string name="question">question</string>
     <string name="enter_your_exam_name">Enter your exam name</string>
     <string name="write_name">write a name for exam</string>
+    <string name="deny_text"><![CDATA[charactor & is denied]]></string>
+    <string name="wrong_format">wrong format</string>
+    <string name="wrong_format_message">grade must be a floating point number</string>
+    <string name="grade_maxGrage">grade must be fewer than max grade</string>
+    <string name="enter_mark_for_this_answer">enter mark for this answer</string>
+    <string name="get_all_score">get all score</string>
+    <string name="get_no_score">get no score</string>
 </resources>

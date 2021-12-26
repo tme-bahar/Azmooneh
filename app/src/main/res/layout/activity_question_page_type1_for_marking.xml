@@ -4,22 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Question4ChoiceActivity"
+    tools:context=".Activities.MarkFile"
     android:background="#006C7A"
     android:alpha=".86">
-    <TextView
-        android:id="@+id/textView33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:background="#000"
-        android:paddingHorizontal="25sp"
-        android:text="2.5/20"
-        android:textColor="#f2f2f2"
-        android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="366dp"
         android:layout_height="592dp"
@@ -54,7 +42,7 @@
                     android:layout_height="137dp"
                     android:layout_marginStart="30dp"
                     android:gravity="center_vertical"
-                    android:text="2 × 2 = ?"
+                    android:text=" if ali has two apples and give one on them to reza, now how many apples does ali have??"
                     android:textColor="#fff"
                     android:textSize="25dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -76,62 +64,41 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout11"
-                android:layout_width="335dp"
-                android:layout_height="367dp"
+                android:id="@+id/constraintLayout12"
+                android:layout_width="329dp"
+                android:layout_height="368dp"
                 android:layout_marginTop="4dp"
                 android:background="#426083"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.516"
+                app:layout_constraintHorizontal_bias="0.511"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
 
-                <RadioGroup
-                    android:id="@+id/radioGrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="268dp"
-                    android:layout_marginBottom="72dp"
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="216dp"
+                    android:layout_height="51dp"
+                    android:layout_marginBottom="96dp"
+                    android:text="@string/save_changes"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/editTextNumberDecimal"
+                    android:layout_width="325dp"
+                    android:layout_height="66dp"
+                    android:layout_marginBottom="256dp"
+                    android:ems="10"
+
+                    android:hint="@string/enter_mark_for_this_answer"
+                    android:inputType="date"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="8"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="6"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:text="4"
-                        android:textColor="#fff"
-                        android:textSize="22sp" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="2"
-                        android:textColor="#fff"
-
-                        android:textSize="22sp" />
-                </RadioGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
@@ -142,7 +109,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/next"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout12" />
 
             <Button
                 android:id="@+id/button10"
@@ -150,11 +117,9 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:text="@string/previous"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout12" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -165,11 +130,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:background="#fff"
+        android:text="5/16"
         android:paddingHorizontal="25sp"
-        android:text="1/2"
+        android:background="#fff"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:background="#000"
+        android:paddingHorizontal="25sp"
+        android:text="2.5/20"
+        android:textColor="#f2f2f2"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

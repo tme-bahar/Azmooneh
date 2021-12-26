@@ -4,7 +4,7 @@ import ir.bahonar.azmooneh.domain.exam.Exam;
 import ir.bahonar.azmooneh.domain.Question;
 import ir.bahonar.azmooneh.domain.User;
 
-public abstract class Answer {
+public class Answer {
 
     //fields
     private final String id;
@@ -13,15 +13,26 @@ public abstract class Answer {
     private final User student;
     private final AnswerExam answerExam;
     private float grade;
+    private String answer;
     public enum AnswerType{file,text,multiChoice}
     //constructor
-    public Answer(String id, Question question, User student,AnswerExam answerExam) {
+    public Answer(String id,String answer, Question question, User student,AnswerExam answerExam) {
         this.id = id;
         this.question = question;
         this.answerExam = answerExam;
         this.exam = question.getExam();
         this.student = student;
-        this.grade = -1;
+        this.grade = 0;
+        this.answer = answer;
+    }
+    public Answer(String id,Answer answer) {
+        this.id = id;
+        this.question = answer.getQuestion();
+        this.answerExam = answer.answerExam;
+        this.exam = answer.getExam();
+        this.student = answer.student;
+        this.grade = answer.grade;
+        this.answer = answer.answer;
     }
 
     //getters
@@ -50,6 +61,10 @@ public abstract class Answer {
         return answerExam;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
     public boolean setGrade(float grade) {
         if (grade > question.getMaxGrade() || grade < 0)
             return false;
@@ -61,5 +76,7 @@ public abstract class Answer {
         grade = -1;
     }
 
-    public abstract AnswerType getType();
+    public  AnswerType getType(){
+        return question.getChoices() == 0 ? AnswerType.file : (question.getChoices() == 1 ? AnswerType.text : AnswerType.multiChoice);
+    }
 }

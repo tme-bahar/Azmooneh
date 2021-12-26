@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Azmooneh">
         <activity
+            android:name=".Activities.Mark4Choice"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MarkTyping"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.MarkFile"
+            android:exported="true" />
+        <activity
             android:name=".Activities.TestQuestionEdit"
             android:exported="true" />
         <activity

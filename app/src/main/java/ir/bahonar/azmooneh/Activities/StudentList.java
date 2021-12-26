@@ -58,7 +58,7 @@ public class StudentList extends AppCompatActivity {
             if (ActivityHolder.exam!= null &&ActivityHolder.exam.getStudents() != null ){
                 rv.setLayoutManager(new LinearLayoutManager(this));
                 UserAdapter a = new UserAdapter(ActivityHolder.exam.getStudents());
-                a.setOnItemClickListener((student, position) -> {
+                a.setOnItemLongClickListener((student, position) -> {
                     AlertDialog.Builder alert = new AlertDialog.Builder(this);
                     alert.setTitle(getResources().getString(R.string.are_you_sure));
                     alert.setMessage(getResources().getString(R.string.are_you_sure_messege_student));
@@ -71,6 +71,15 @@ public class StudentList extends AppCompatActivity {
                     alert.setNegativeButton(getResources().getString(R.string.No),(d,w)->d.dismiss());
                     alert.show();
 
+                });
+                a.setOnItemClickListener((student, position) ->{
+                    int t = ActivityHolder.exam.getQuestions().get(0).getChoices();
+                    ActivityHolder.student = student;
+                    Intent i = new Intent(this,t == 0?MarkFile.class:(t == 1 ?MarkTyping.class :
+                            Mark4Choice.class));
+                    i.putExtra("question",0);
+                    startActivity(i);
+                    finish();
                 });
                 rv.setAdapter(a);
 

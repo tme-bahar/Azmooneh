@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.bahonar.azmooneh.domain.Question;
-import ir.bahonar.azmooneh.domain.answer.Answer;
 import ir.bahonar.azmooneh.domain.answer.CorrectAnswer;
-import ir.bahonar.azmooneh.domain.answer.MultiChoiceAnswer;
 
 
 public class CorrectExam {
@@ -77,24 +75,4 @@ public class CorrectExam {
         return result;
     }
 
-
-    //check answers
-    private boolean check(MultiChoiceAnswer a){
-        if(!isComplete())
-            return false;
-        for (CorrectAnswer ca:answers)
-            if(ca.getQuestion().equals(a.getQuestion())) {
-                if (a.getAnswer() == ca.getAnswer())
-                    a.setGrade(a.getQuestion().getMaxGrade());
-                return true;
-            }
-
-        return false;
-    }
-    public boolean check(MultiChoiceAnswer ... answers){
-        boolean result = true;
-        for (MultiChoiceAnswer a:answers)
-            result &= check(a);
-        return result;
-    }
 }

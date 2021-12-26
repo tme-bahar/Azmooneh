@@ -83,6 +83,17 @@ public class DataBase {
             FieldMap hm = new FieldMap(number, text,maxGrade,starting_time,finishing_time,teacher_id,is_multi_question);
             createTable("exams", hm, true);
         }
+
+        //answers
+        {
+            Field answer = new Field("answer", "VARCHAR(5)");
+            Field exam = new Field("exam_id", "VARCHAR(5)");
+            Field user = new Field("user_id", "VARCHAR(5)");
+            Field question = new Field("question_id", "VARCHAR(5)");
+            Field grade = new Field("grade", "VARCHAR(10)");
+            FieldMap hm = new FieldMap(answer,exam,user,question,grade);
+            createTable("answers", hm, true);
+        }
     }
 
     //create

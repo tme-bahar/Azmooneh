@@ -20,7 +20,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private final List<User> localDataSet;
     private OnItemClickListener onItemClickListener;
+    private OnItemLongClickListener onItemLongClickListener;
     public interface OnItemClickListener {
+        void onItemClick(User student,int position);
+    }
+    public interface OnItemLongClickListener {
         void onItemClick(User student,int position);
     }
     /**
@@ -74,11 +78,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         viewHolder.number.setText(localDataSet.get(position).getNumber());
         //TODO Status must complete
         viewHolder.itemView.setOnClickListener(v -> onItemClickListener.onItemClick(localDataSet.get(position),position));
+        viewHolder.itemView.setOnLongClickListener(v -> {onItemLongClickListener.onItemClick(localDataSet.get(position),position);return false;});
 
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
+    }
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener){
+        this.onItemLongClickListener = onItemLongClickListener;
     }
     // Return the size of your dataset (invoked by the layout manager)
     @Override

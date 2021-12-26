@@ -83,4 +83,11 @@
     <string name="question">سوال</string>
     <string name="enter_your_exam_name">نام امتحان را وارد کنید</string>
     <string name="write_name">یک نام برای امتحان وارد نمایید</string>
+    <string name="deny_text">کاراکتر &amp; غیر مجاز است</string>
+    <string name="wrong_format">قالب اشتباه</string>
+    <string name="wrong_format_message">نمره باید یک عدد اعشاری باشد</string>
+    <string name="grade_maxGrage">نمره باید از حداکثز نمره کمتر باشد</string>
+    <string name="enter_mark_for_this_answer">نمره برای این پاسخ وارد کنید</string>
+    <string name="get_all_score">گرفتن تمام نمره</string>
+    <string name="get_no_score">نمره نگرفتن</string>
 </resources>

@@ -14,4 +14,5 @@ public class ActivityHolder {
     public static Activity activity;
     public static Exam exam;
     public static User user;
+    public static User student;
 }

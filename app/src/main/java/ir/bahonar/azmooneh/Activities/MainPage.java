@@ -57,11 +57,6 @@ public class MainPage extends AppCompatActivity {
 
         //putting date
         getExams();
-        /*Exam exam = new Exam("id",new User("0","153","ali","hassani","","", User.userType.TEACHER,""),true,"14:30","15:30",2,"testing exam");
-        Question question1 = new Question("1",1,"2 × 2 = ?","",4,exam,1);
-        Question question2 = new Question("2",2,"4 × 2 = ?","",1,exam,1);
-        exam.addQuestion(question1,question2);
-        exams.add(exam);*/
         name.setText(user.getFirstName()+" "+user.getLastName());
         type.setText(getResources().getString(user.getType()== User.userType.TEACHER ? R.string.teacher : R.string.student));
         fbt.setVisibility(user.getType()== User.userType.TEACHER ? View.VISIBLE : View.GONE);
@@ -107,33 +102,29 @@ public class MainPage extends AppCompatActivity {
         for (Exam exam:temp)
             if(exam != null)
                 exams.add(exam);
-
-
-        int NotFinishedActivities = 0;
-
-        for (Exam e:exams) {
-
-            try {
-                if(Calendar.getInstance().before(TimeHandler.parse(e.getStartingTime())))
-                    NotFinishedActivities++;
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-
-        }
-        //TODO : TEMP
-        finishedActivities.setText("0");
-        notFinishedActivities.setText("1");
+        int finished = 0;
+        for (Exam exam:exams)
+            if(exam.getStatus() == Exam.Status.finished)
+                finished++;
+        finishedActivities.setText(String.valueOf(finished));
+        notFinishedActivities.setText(String.valueOf(exams.size()-finished));
         if (exams.size() == 0){
             rv.setVisibility(View.GONE);
         }else{
             rv.setVisibility(View.VISIBLE);
             rv.setLayoutManager(new LinearLayoutManager(this));
             a = new Adapter(exams);
-            a.setOnItemClickListener((exam1, position) -> {
-                ActivityHolder.exam = exam1;
-                startActivity(new Intent(this,FirstExamStatus.class));
-            });
+            if(ActivityHolder.user.getType() == User.userType.STUDENT)
+                a.setOnItemClickListener((exam1, position) -> {
+                    ActivityHolder.exam = exam1;
+                    startActivity(new Intent(this,FirstExamStatus.class));
+                });
+            else
+                a.setOnItemClickListener((exam1, position) -> {
+                    Log.e("e",String.valueOf(position));
+                    ActivityHolder.exam = exam1;
+                    startActivity(new Intent(this,ExamStatusTeacher.class));
+                });
 
             if(ActivityHolder.user.getType() == User.userType.TEACHER)
                 a.setOnItemLongClickListener((exam, position) -> {

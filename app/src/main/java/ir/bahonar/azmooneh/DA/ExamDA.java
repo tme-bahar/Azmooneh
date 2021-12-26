@@ -2,7 +2,10 @@ package ir.bahonar.azmooneh.DA;
 
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -68,6 +71,7 @@ public class ExamDA {
         String max_grade = cursor.getString(cursor.getColumnIndexOrThrow("max_grade"));
         return new Exam(id,(new UserDA()).get(teacher_id),is_multi_question.equals("1"),starting_time,finishing_time,Float.parseFloat(max_grade),name);
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public Exam change(Exam exam){
         Field teacher_id = new Field("teacher_id",exam.getTeacher().getId());
         Field name = new Field("name",exam.getName());
